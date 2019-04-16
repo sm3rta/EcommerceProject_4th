@@ -1,0 +1,107 @@
+FORMAT: 1A
+HOST: http://localhost/
+
+# API DOCUMENTATION
+
+## Create Account [/register]
+
+### Step 1 [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Mohamed Darwish",
+            "email: "dd@dd.com",
+            "password": "cjhsgdfshfkjdhjkfsdf;",
+        }
+
++ Response 200 (application/json)
+
+        {
+            "error": false,
+            "message": "Verification link sent to your email."
+        }
+
+### Step 1 - invalid or used email [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Mohamed Darwish",
+            "email: "dd@dd.com",
+            "password": "cjhsgdfshfkjdhjkfsdf;",
+        }
+
++ Response 400 (application/json)
+
+        {
+            "error": true,
+            "message": "This email is already registered."
+        }
+        
+### Step 2 [POST] 
+
++ Request (application/json)
+
+        {
+            "email: "dd@dd.com",
+            "token": "dsahjdgdshfjhshdkhfjsdfhjdshjf",
+        }
+
++ Response 201 (application/json)
+
+        {
+            "error": false,
+            "message": "Account has been activated successfully."
+        }
+        
+### Step 2 - expired or invalid token [POST] 
+
++ Request (application/json)
+
+        {
+            "email: "dd@dd.com",
+            "token": "dsahjdgdshfjhshdkhfjsdfhjdshjf",
+        }
+
++ Response 400 (application/json)
+
+        {
+            "error": true,
+            "message": "Session Expired!"
+        }
+        
+
+## Login [/login]
+
+### Login with valid data [POST]
+
++ Request (application/json)
+
+        {
+            "email: "dd@dd.com",
+            "password: "1232434546575676767"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "error": false,
+            "token": "54787878787sdf78sdfsdjfajshdf"
+        }
+ 
+### Login with invalid data [POST]
+
++ Request (application/json)
+
+        {
+            "email: "dd2@dd.com",
+            "password: "12324345e46575676767"
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "error": true,
+            "message": "Invalid email or password."
+        }
