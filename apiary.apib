@@ -105,3 +105,100 @@ HOST: http://localhost/
             "error": true,
             "message": "Invalid email or password."
         }
+        
+        
+        
+## Product search [/search?q=iPhone]
+
+### Search [GET]
+
++ Response 200 (application/json)
+
+        {
+            "error": false,
+            "data": [{"name":"iPhone", "price":1, color:"bamby"}]
+        }
+
+## Products [/products/{product_id}]
+
+### Create [POST]
+
++ Request (application/json)
+
+    + Headers
+        Authentication: "authtoken"
+    
+    + Body
+
+        {"name":"iPhone", "price":1, color:"bamby"}
+        
++ Response 201
+        
+        {
+            "error": false,
+            "message": "Product created successfully",
+            "product": {"id":"1", "name":"iPhone", "price":1, color:"bamby"}
+        }
+
+### Update [PUT]
+
++ Parameters
+
+    + product_id (string)
+    
++ Request (application/json)
+
+    + Headers
+        Authentication: "authtoken"
+    
+    + Body
+
+        {"name":"iPhone", "price":1, color: "pink"}
+        
++ Response 200
+        
+        {
+            "error": false,
+            "message": "Product updated successfully",
+            "product": {"id":"1", "name":"iPhone", "price":1, color:"pink"}
+        }
+
+### Delete [DELETE]
+
++ Parameters
+
+    + product_id (string)
+
++ Request (application/json)
+
+    + Headers
+        Authentication: "authtoken"
+    
++ Response 204
+
+        {
+            "error": false,
+            "message": "Product deleted successfully"
+        }
+
+### Get Single Product [GET]
+
++ Parameters
+
+    + product_id (string)
+
++ Response 200
+
+        {
+            "error": false,
+            "data": {"id":"1", "name":"iPhone", "price":1, color:"pink"}
+        }
+
+### Get All Products [GET]
+
++ Response 200
+
+        {
+            "error": false,
+            "data": [{"id":"1", "name":"iPhone", "price":1, color:"pink"}]
+        }
